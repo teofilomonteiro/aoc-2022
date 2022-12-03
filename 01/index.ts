@@ -1,5 +1,7 @@
+import { sum } from "../lib/index.ts";
+
 const __filename = new URL(".", import.meta.url).pathname;
-console.log("🚀 ~ file: index.ts:2 ~ __filename", __filename);
+
 const text = await Deno.readTextFile(`${__filename}/input.txt`);
 const elfs: number[][] = [];
 let tempElf: number[] = [];
@@ -15,10 +17,6 @@ text.split("\n").forEach((lines) => {
 elfs.push(tempElf);
 
 const caloriesPerElf = elfs.map((elf) => sum(elf));
-
-function sum(array: number[]) {
-  return array.reduce((partialSum, a) => partialSum + a, 0);
-}
 
 function findIndicesOfMax(inp: number[], count: number) {
   const sorted = inp.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0));
